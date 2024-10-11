@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #calculadora {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            height: 40px;
+            text-align: right;
+            margin-bottom: 10px;
+            font-size: 18px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 15%;
+            height: 40px;
+            font-size: 18px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculadora">
+        <input type="text" id="resultado" disabled>
+        <div>
+            <button onclick="adicionarNumero('7')">7</button>
+            <button onclick="adicionarNumero('8')">8</button>
+            <button onclick="adicionarNumero('9')">9</button>
+            <button onclick="adicionarOperacao('/')">/</button>
+        </div>
+        <div>
+            <button onclick="adicionarNumero('4')">4</button>
+            <button onclick="adicionarNumero('5')">5</button>
+            <button onclick="adicionarNumero('6')">6</button>
+            <button onclick="adicionarOperacao('*')">*</button>
+        </div>
+        <div>
+            <button onclick="adicionarNumero('1')">1</button>
+            <button onclick="adicionarNumero('2')">2</button>
+            <button onclick="adicionarNumero('3')">3</button>
+            <button onclick="adicionarOperacao('-')">-</button>
+        </div>
+        <div>
+            <button onclick="adicionarNumero('0')">0</button>
+            <button onclick="calcular()">=</button>
+            <button onclick="limpar()">C</button>
+            <button onclick="adicionarOperacao('+')">+</button>
+        </div>
+    </div>
+
+    <script>
+        let resultado = document.getElementById('resultado');
+        let operacaoAtual = '';
+
+        function adicionarNumero(numero) {
+            operacaoAtual += numero;
+            resultado.value = operacaoAtual;
+        }
+
+        function adicionarOperacao(operacao) {
+            // Evita adicionar mais de uma operação consecutiva
+            const ultimaCaracter = operacaoAtual.slice(-1);
+            if (['+', '-', '*', '/'].includes(ultimaCaracter)) {
+                operacaoAtual = operacaoAtual.slice(0, -1) + operacao;
+            } else {
+                operacaoAtual += operacao;
+            }
+            resultado.value = operacaoAtual;
+        }
+
+        function calcular() {
+            try {
+                resultado.value = eval(operacaoAtual);
+                operacaoAtual = resultado.value; // Permite calcular sequências
+            } catch (e) {
+                resultado.value = 'Erro';
+            }
+        }
+
+        function limpar() {
+            operacaoAtual = '';
+            resultado.value = '';
+        }
+    </script>
+</body>
+</html>
