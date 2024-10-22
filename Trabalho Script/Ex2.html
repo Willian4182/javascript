@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Números Pares em um Vetor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+    <header>
+        <h1>Lista de Exercícios - AULA 21/10/2024</h1>
+        <h2>
+            2. Contagem Regressiva
+            Escreva um programa que solicite ao usuário um número inteiro positivo e, em seguida, use um loop para imprimir uma contagem regressiva de 10 até esse número, parando se o número for menor que 10.
+        </h2>
+    </header>
+
+    <button onclick="gerarNumeros()">Clique para gerar Números: </button>
+    <div id="resultado"></div>
+
+    
+    <script> Ex1:
+        function gerarNumeros() {
+            const vetor = [];
+            for (let i = 0; i < 10; i++) {
+                vetor.push(Math.floor(Math.random() * 100) + 1);
+            } 
+
+            
+            const pares = vetor.filter(num => num % 2 === 0);
+            console.log("Vetor:", vetor); // Imprime o vetor no console
+            console.log("Números Pares:", pares);
+        }
+            
+
+
+    </script>  
+
+</body>
+</html>
